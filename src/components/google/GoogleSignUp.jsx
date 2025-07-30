@@ -11,30 +11,23 @@ const GoogleSignUp = ({text}) =>{
 
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
-            
-            const response = await axiosClient.post('/user/google', { token: credentialResponse.credential },
-                { 
-                withCredentials: true,  // Correct way to send credentials
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-                }
-            );
+            console.log(credentialResponse) ;
+            const response = await axiosClient.post('/user/google', { token: credentialResponse?.credential });
 
-            if (response.request.statusText === "OK") {
+            if (response?.request?.statusText === "OK") {
                 // Handle Google user differently
-                if (response.data.user.verified) {
-                    dispatch({ type: 'auth/loginSuccess', payload: response.data.user });
+                if (response?.data?.user?.verified) {
+                    dispatch({ type: 'auth/loginSuccess', payload: response.data?.user });
                     navigate('/');
                 } else {
                     // Shouldn't happen for Google users, but safe fallback
-                    navigate(`/OTPVerification/${response.data.user.emailId}/${response.data.user.firstName}`);
+                    navigate(`/OTPVerification/${response.data.user.emailId}/${response.data?.user.firstName}`);
                 }
             } else {
-                throw new Error(response.data.message || 'Google authentication failed');
+                throw new Error(response.data?.message || 'Google authentication failed');
             }
         } catch (err) {
-            toast.error(err.message);
+            toast.error(err?.message);
         }
   };
 

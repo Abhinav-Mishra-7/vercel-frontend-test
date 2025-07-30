@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // axios.create({}) -> This creates an instance so that we can use this configuration everywhere and no need to create oftenly.
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://vercel-backend-test-five.vercel.app',
   // withCredentials: true -> browser will add tokens or cookies automatically with the credentials
   withCredentials: true ,
   // 'Content-Type' : 'application/json' -> Content will go in json formate to backend from frontend

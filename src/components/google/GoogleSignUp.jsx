@@ -2,6 +2,7 @@ import axiosClient from "../../utils/axiosClient";
 import { useDispatch } from "react-redux";
 import { useNavigate} from 'react-router';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { toast } from "react-toastify";
 
 const GoogleSignUp = ({text}) =>{
 

@@ -22,7 +22,7 @@ axiosClient.interceptors.response.use(
 
 // Add to submission API call
 export const submitSolution = async (contestId, problemId, code) => {
-  const response = await axios.post('/api/submissions', {
+  const response = await axiosClient.post('/api/submissions', {
     contestId,
     problemId,
     code

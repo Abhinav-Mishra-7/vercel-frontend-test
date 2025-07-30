@@ -10,9 +10,13 @@ const GoogleSignUp = ({text}) =>{
     const navigate = useNavigate();
 
     const handleGoogleSuccess = async (credentialResponse) => {
+        if (!credentialResponse.credential) {
+          toast.error("Could not get credential from Google.");
+          return;
+        }
         try {
-            console.log(credentialResponse) ;
-            const response = await axiosClient.post('/user/google', { token: credentialResponse?.credential });
+            
+            const response = await axiosClient.post('/user/google', { token: credentialResponse.credential });
 
             if (response?.request?.statusText === "OK") {
                 // Handle Google user differently

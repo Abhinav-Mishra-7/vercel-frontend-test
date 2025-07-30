@@ -1,68 +1,123 @@
+@import "tailwindcss";
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: 50px;  
+}
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* FONT */
+  --font-sans: "Geist Sans", system-ui, sans-serif;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /*PRIMARY ACCENT GRADIENT: ORCHID GLOW (Full Vibrancy)*/
+  --primary-from: oklch(71.573% 0.22219 326.393);    /* #ff55b8 - Hot Pink */
+  --primary-to: oklch(47.058% 0.28957 264.872);     /* #b36aff - Vibrant Violet */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /*BACKGROUND GRADIENT: MOODY ORCHID GLOW
+  */
+  --gradient-bg-from: oklch(26.983% 0.07369 328.471);   /* #402a39 - Dark, Moody Pink/Magenta */
+  --gradient-bg-to: oklch(17.268% 0.02477 291.213);     /* #3b2d45 - Deep, Dark Violet */
+  
+  /*
+    CORE LAYOUT & INPUTS
+  */
+  /* **CARD:** A very dark, purple-charcoal color. */
+  --card: oklch(24.884% 0.0015 16.221);         /* #2d2a32 - The dark card background */
+  
+  /* **KEY FIX 1: INPUT BACKGROUND:** A lighter dark color for clear separation. */
+   --input-background: oklch(31.135% 0.00549 301.03);/* #403c46 - Lighter purple-gray, clearly visible */
+  
+  /* **TEXT COLORS** */
+  --card-foreground: oklch(96.715% 0.00011 271.152);   /* #f8f4f9 - Light text for labels on the dark card */
+  --placeholder-text: oklch(85.819% 0.00283 285.83); /* #928da0 - Muted text for placeholders */
+  --button-text: oklch(92.494% 0.00011 271.152);             /* #ffffff - Pure white for the gradient button */
+  
+  /* BORDERS, RINGS, & DESTRUCTIVE STATE */
+  --border: oklch(0.4 0.02 300);           /* #5e5a66 - A mid-tone border to frame the inputs */
+  --ring: var(--primary-from);                /* Use the pink part of the gradient for focus */
+  --destructive: oklch(0.65 0.25 25);
+  --accent-gold: oklch(0.8 0.15 85);       /* #ff6554 - Vibrant coral red */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@theme {
+  --color-primary-from: var(--primary-from);
+  --color-primary-to: var(--primary-to);
+
+  --color-background: var(--gradient-bg-from);
+  --color-card: var(--card);
+  --color-foreground: var(--card-foreground); /* Default text is for the card */
+  --color-muted-foreground: var(--placeholder-text);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: oklch(1 0 0);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--ring);
+
+  --border-radius-base: 0.6rem;
+  --border-radius-lg: 0.8rem;
+  
+  --font-sans: var(--font-sans);
 }
 
 body {
-  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--gradient-bg-to); 
+  background-image: radial-gradient(
+    ellipse at bottom,
+    var(--gradient-bg-from),
+    var(--gradient-bg-to)
+  );
+  background-attachment: fixed;
+}
+
+
+
+
+/* Animation styles */
+.upvote-btn {
+  transition: all 0.3s ease;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  gap: 4px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.upvote-btn.animate {
+  animation: thumbsUpAnimation 0.5s ease;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@keyframes thumbsUpAnimation {
+  0% {
+    transform: scale(1);
+    color: inherit;
+  }
+  25% {
+    transform: scale(1.3);
+    color: #3b82f6; /* Blue color */
+  }
+  50% {
+    transform: rotate(-15deg) scale(1.2);
+  }
+  75% {
+    transform: rotate(15deg) scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    color: inherit;
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.thumbs-up-icon {
+  width: 20px;
+  height: 20px;
+  transition: fill 0.3s ease;
 }

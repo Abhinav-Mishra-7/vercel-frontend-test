@@ -47,14 +47,14 @@ const GoogleSignUp = ({text}) =>{
                 </div>
         </div>
                 
-        <div className="flex justify-center">
+        <div className="flex justify-center" >
           <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
             <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => {toast.error('Google Sign-In failed');}}
               theme="filled_blue"
               size="large"
               shape="rectangular"
               text={`${text}`}
-            />
+            /> 
           </GoogleOAuthProvider>
         </div>
         </div>

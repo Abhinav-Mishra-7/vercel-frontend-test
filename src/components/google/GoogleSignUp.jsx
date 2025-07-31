@@ -50,7 +50,6 @@ const GoogleSignUp = ({text}) =>{
         <div className="flex justify-center">
           <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
             <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => {toast.error('Google Sign-In failed');}}
-              useOneTap
               theme="filled_blue"
               size="large"
               shape="rectangular"

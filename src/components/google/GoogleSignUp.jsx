@@ -10,7 +10,7 @@ const GoogleSignUp = ({text}) =>{
     const navigate = useNavigate();
 
     const handleGoogleSuccess = async (credentialResponse) => {
-        if (!credentialResponse.credential) {
+        if (!credentialResponse?.credential) {
           toast.error("Could not get credential from Google.");
           return;
         }

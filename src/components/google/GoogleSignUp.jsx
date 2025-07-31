@@ -17,7 +17,7 @@ const GoogleSignUp = ({text}) =>{
         try {
             
             const response = await axiosClient.post('/user/google', { token: credentialResponse.credential });
-
+            console.log(response) ;
             if (response?.request?.statusText === "OK") {
                 // Handle Google user differently
                 if (response?.data?.user?.verified) {

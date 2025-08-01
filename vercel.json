@@ -1,16 +1,19 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "headers": {
-        "Cross-Origin-Opener-Policy": "same-origin-allow-popups"
-      },
-      "continue": true
-    },
+      "source": "/((?!api|assets|_vercel|favicon.ico).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
     {
-      "src": "/[^.]+",
-      "dest": "/index.html",
-      "status": 200
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        }
+      ]
     }
   ]
 }
